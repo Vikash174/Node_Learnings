@@ -5,15 +5,13 @@ import {
   createTour,
   getTour,
   updateTour,
-  deleteTour
+  deleteTour,
+  checkID
 } from '../controllers/tourController.js';
 
 export const tourRouter = express.Router();
 
-tourRouter.param('id', (req, res, next, val) => {
-  console.log(`Tour id is : ${val}`);
-  next();
-});
+tourRouter.param('id', checkID);
 
 tourRouter.route('/').get(getAllTours).post(createTour);
 
