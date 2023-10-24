@@ -18,6 +18,17 @@ export const checkID = (req, res, next, val) => {
   next();
 };
 
+export const checkBody = (req, res, next) => {
+  console.log(req.body);
+  if (req.body.name === undefined || req.body.price === undefined) {
+    return res.status(400).json({
+      status: 'failed',
+      message: 'bad request : missing name or price'
+    });
+  }
+  next();
+};
+
 export const getAllTours = (req, res) => {
   res.status(200).json({
     status: 'success',
